@@ -11,6 +11,7 @@ const check = () => {
 
 const registerServiceWorker = async () => {
     const swRegistration = await navigator.serviceWorker.register('service.js')
+    console.log(swRegistration)
     return swRegistration;
 }
 
@@ -24,7 +25,7 @@ const requestNotificationPermission = async () => {
 
 const showLocalNotification = (title, body, swRegistration) => {
     const options = {
-        body
+        body: body
     }
     swRegistration.showNotification(title, options)
 }
@@ -33,5 +34,6 @@ const main = async () => {
     check()
     const swRegistration = await registerServiceWorker()
     const permission = await requestNotificationPermission()
+    console.log(permission)
     showLocalNotification('This is the title', 'this is the message', swRegistration)
 }
